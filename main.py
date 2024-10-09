@@ -9,6 +9,24 @@ app = Flask(__name__)
 CORS(app)
 openai.api_key = os.environ['OPENAI_API_KEY']
 
+@app.route('/')
+def home():
+    return '''
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Welcome Page</title>
+    </head>
+    <body>
+        <h1 style="text-align:center">You are viewing the Flask app serving as NLP backend to my CO-PO Mapper Website!</h1>
+        <p style="text-align:center">To view the website this Flask app is intended for, go to <a href="http://www.copomapper.surge.sh" target="_blank">CO PO Mapper</a>.</p>
+        <p style="text-align:center">Feel free to explore!</p>
+    </body>
+    </html>
+    '''
+
 @app.route('/process', methods=['POST'])
 def process_data():
     data = request.json.get('data')
@@ -61,4 +79,3 @@ def ask_question():
     output = response['choices'][0]['message']['content']
 
     return jsonify({'answer': output})
-
