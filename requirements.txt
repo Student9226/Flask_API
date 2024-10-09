@@ -3,3 +3,4 @@ boltiotai
 python-dotenv
 flask_cors
 gunicorn
+pymongo
